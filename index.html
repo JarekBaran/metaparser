@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MetaParser</title>
+  <link async rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link defer rel="stylesheet" href="app/style.css">
+  <script src="assets/js/vue.js"></script>
+</head>
+<body>
+	<main class="container-fluid" id="metaparser">
+    <section class="row align-items-stretch">
+      <div class="col-md-5 form-group">
+        <textarea class="form-control" id="input" v-model="input"></textarea>
+      </div>
+      <div class="col-md-2 btn-group-vertical align-self-start" id="panel">
+        <button v-for="language in languages" type="button" class="btn btn-outline-primary btn btn-block" @click="show(language.schema)">{{language.name}}</button>
+      </div>
+      <div class="col-md-5">
+        <div class="alert alert-warning" id="output">
+          <div v-for="template in languages">
+            <component :is="view" v-show="template.active" v-for="(meta, index) in output" :index="index" :last="{true : index === (output.length-1)}" :uri="meta[0]|uri" :title="meta[1]" :desc="meta[2]" keep-alive></component>
+          </div>
+        </div>
+			</div>
+		</section>
+	</main>
+	<script defer src="app/metaparser.js"></script>
+</body>
+</html>

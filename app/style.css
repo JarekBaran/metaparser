@@ -1,0 +1,8 @@
+#input, #output {
+  min-height:95vh;
+  margin:15px 0px;
+}
+
+#panel {
+  padding-top: 15px;
+}
