@@ -2,7 +2,7 @@ var app = new Vue({
   el: '#metaparser',
   data: {
     languages: [
-      {active: false, schema:"php-tags", name:"PHP / Tags"},
+      {active: false, schema:"php-if-tags", name:"PHP / If / Tags"},
       {active: false, schema:"php-vars", name:"PHP / Vars"},
       {active: false, schema:"php-echo", name:"PHP / Echo"},
       {active: false, schema:"buffer", name:"PHP / Buffer"},
@@ -46,9 +46,9 @@ var app = new Vue({
     }
   },
   components: {
-    'php-tags': {
+    'php-if-tags': {
       props: ['index','last','uri','title','desc'],
-      template: '<p>&#x3C;? <span v-if="index">\} else</span>if($_SERVER[\'REQUEST_URI\']==\'\/{{ uri }}\') \{ ?&#x3E;<br>&#x3C;title&#x3E;{{ title }}&#x3C;/title&#x3E;<br>&#x3C;meta name=\'description\' content=\'{{ desc }}\'&#x3E;<br><span v-show="last.true">&#x3C;? \} ?&#x3E;</span></p>'
+      template: '<p><span v-show="!index">&#x3C;?php $reqUri = $_SERVER[\'REQUEST_URI\']; ?&#x3E;<br><br></span>&#x3C;?php <span v-if="index">\} else</span>if ($reqUri == \'\/{{ uri }}\') \{ ?&#x3E;<br>&nbsp;&nbsp;&#x3C;title&#x3E;{{ title }}&#x3C;/title&#x3E;<br>&nbsp;&nbsp;&#x3C;meta name=\'description\' content=\'{{ desc }}\' /&#x3E;<br><span v-show="last.true">&#x3C;?php \} ?&#x3E;<br><br><div class="alert alert-danger">&#x3C;?php \} else \{ ?&#x3E;<br>&nbsp;&nbsp;&#x3C;title&#x3E;defaultTitle&#x3C;/title&#x3E;<br>&nbsp;&nbsp;&#x3C;meta name=\'description\' content=\'defaultDescription\' /&#x3E;<br>&#x3C;?php \} ?&#x3E;<br></span></p>'
     },
     'php-vars': {
       props: ['index','last','uri','title','desc'],
