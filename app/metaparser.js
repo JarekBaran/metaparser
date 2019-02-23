@@ -3,7 +3,7 @@ var app = new Vue({
   data: {
     languages: [
       {active: false, schema:"php-if-tags", name:"PHP / If / Tags"},
-      {active: false, schema:"php-vars", name:"PHP / Vars"},
+      {active: false, schema:"php-if-vars", name:"PHP / If / Vars"},
       {active: false, schema:"php-echo", name:"PHP / Echo"},
       {active: false, schema:"buffer", name:"PHP / Buffer"},
       {active: false, schema:"smarty", name:"Smarty / URI"},
@@ -48,11 +48,11 @@ var app = new Vue({
   components: {
     'php-if-tags': {
       props: ['index','last','uri','title','desc'],
-      template: '<p><span v-show="!index">&#x3C;?php $reqUri = $_SERVER[\'REQUEST_URI\']; ?&#x3E;<br><br></span>&#x3C;?php <span v-if="index">\} else</span>if ($reqUri == \'\/{{ uri }}\') \{ ?&#x3E;<br>&nbsp;&nbsp;&#x3C;title&#x3E;{{ title }}&#x3C;/title&#x3E;<br>&nbsp;&nbsp;&#x3C;meta name=\'description\' content=\'{{ desc }}\' /&#x3E;<br><span v-show="last.true">&#x3C;?php \} ?&#x3E;<br><br><div class="alert alert-danger">&#x3C;?php else \{ ?&#x3E;<br>&nbsp;&nbsp;&#x3C;title&#x3E;defaultTitle&#x3C;/title&#x3E;<br>&nbsp;&nbsp;&#x3C;meta name=\'description\' content=\'defaultDescription\' /&#x3E;<br>&#x3C;?php \} ?&#x3E;<br></span></p>'
+      template: `<p><span v-show="!index">&#x3C;?php $reqUri = $_SERVER['REQUEST_URI']; ?&#x3E;<br><br></span>&#x3C;?php <span v-if="index">} else</span>if ($reqUri == '/{{ uri }}') { ?&#x3E;<br>&nbsp;&nbsp;&#x3C;title&#x3E;{{ title }}&#x3C;/title&#x3E;<br>&nbsp;&nbsp;&#x3C;meta name='description' content='{{ desc }}' /&#x3E;<br><span v-show="last.true">&#x3C;?php } ?&#x3E;<br><br><div class="alert alert-danger">&#x3C;?php else { ?&#x3E;<br>&nbsp;&nbsp;&#x3C;title&#x3E;defaultTitle&#x3C;/title&#x3E;<br>&nbsp;&nbsp;&#x3C;meta name='description' content='defaultDescription' /&#x3E;<br>&#x3C;?php } ?&#x3E;<br></span></p>`
     },
-    'php-vars': {
+    'php-if-vars': {
       props: ['index','last','uri','title','desc'],
-      template: '<p><span v-if="index">else</span>if($_SERVER[\'REQUEST_URI\']==\'\/{{ uri }}\') {<br> &nbsp; $newTitle=\'{{ title }}\';<br> &nbsp; $newDescription=\'{{ desc }}\';<br>\}<span v-show="last.true"><br><br><div class="alert alert-danger">if(isset($newTitle)) {<br> &nbsp; &nbsp; echo \'&#x3C;title&#x3E;\'.$newTitle.\'&#x3C;/title&#x3E;\';<br>}<br><br>if(isset($newDescription)) {<br> &nbsp; &nbsp; echo \'&#x3C;meta name=\\\'description\\\' content=\\\'\'.$newDescription.\'\\\'&#x3E;\';<br>}</span></div></p>'
+      template: `<p><span v-show="!index">&#x3C;?php $reqUri = $_SERVER['REQUEST_URI']; <br><br></span><span v-if="index">else</span>if ($reqUri == '/{{ uri }}') {<br> &nbsp; $newTitle='{{ title }}';<br> &nbsp; $newDescription='{{ desc }}';<br>}<span v-show="last.true"> ?&#x3E;<br><br><div class="alert alert-danger">&#x3C;?php if (isset($newTitle)) {<br> &nbsp; &nbsp; echo '&#x3C;title&#x3E;'.$newTitle.'&#x3C;/title&#x3E;';<br>}<br><br>if (isset($newDescription)) {<br> &nbsp; &nbsp; echo '&#x3C;meta name='description' content=''.$newDescription.''&#x3E;';<br>} ?&#x3E;</span></div></p>`
     },
     'php-echo': {
       props: ['index','last','uri','title','desc'],
