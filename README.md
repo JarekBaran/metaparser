@@ -1,2 +1,2 @@
-# metaparser
-HTML meta tags (title and description) parser for web programming languages and frameworks.
+# Metaparser (Vue.js)
+HTML meta tags (title and description) parser for popular web programming languages and frameworks.
