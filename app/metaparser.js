@@ -18,7 +18,7 @@ var app = new Vue({
       {active: false, schema:"rubyonrails", name:"Ruby / Rails"},
       {active: false, schema:"django", name:"Python / Django"}
     ],
-      input: `http://example.com/\nTITLE-1\nDESCRIPTION-'1'\n\n/link\nTITLE-2\nDESCRIPTION-'2'`,
+      input: `http://example.com/\nTITLE-1\nDESCRIPTION-'1'\n\n/other-link\nTITLE-2\nDESCRIPTION-'2'\n\n/custom-link\nCUSTOM-TITLE\nCUSTOM-DESCRIPTION-'other'\n\n/add-your-link\nAdd-YOUR-TITLE\nAdd-YOUR-DESCRIPTION-'your description'`,
       output: ``
   },
   filters: {
