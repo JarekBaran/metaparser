@@ -33,16 +33,12 @@ var app = new Vue({
     }
   },
   methods: {
-    show: function(active){
-      this.view = active;
+    show: function(schema) {
+      this.view = schema;
       this.output = this.$options.filters.parse(this.input);
-      for(let toogle in this.languages){
-        if(active == this.languages[toogle].schema){
-          this.languages[toogle].active = true;
-        } else {
-          this.languages[toogle].active = false;
-        }
-      }  
+      for(let language in this.languages) {
+        schema == this.languages[language].schema ? this.languages[language].active = true : this.languages[language].active = false;
+      }
     }
   },
   components: {
